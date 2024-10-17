@@ -3,9 +3,12 @@ function clearFields(hfFields, acFields){
         document.getElementById("hfA").value = " "
         document.getElementById("hfB").value = " "
         document.getElementById("hfC").value = " "
+        document.getElementById("hfAnswerBlock").value = " "
     }
     if (acFields){
         document.getElementById("acA").value = " "
+        document.getElementById("acB").value = " "
+        document.getElementById("acAA").value = " "
     }
 }
 
@@ -17,15 +20,16 @@ function heronsFormula(){
     let b1 = Number(document.getElementById("hfB").value)
     let c1 = Number(document.getElementById("hfC").value)
     let hfAnswer = 0.25 * Math.sqrt((4 * a1**2 * b1**2)-(a1**2 + b1**2 - c1**2)**2)
-    hfDisplay.value = hfAnswer
+    hfDisplay.value = hfAnswer.toFixed(3)
     console.log(hfAnswer)
 }
 
 heronCalc.addEventListener("click", () => {
+    clearFields(false, true)
     heronsFormula();
 });
 
-//
+//--------------------------------------------------------------------------------------------------------------------------------
 const acDisplay = document.getElementById("acAnswerBlock")
 const acCalc = document.getElementById("acSubmit")
 const possibleTriangles = ["No Triangle", "Right Triangle", "One Triangle", "Two Triangles"]
@@ -40,43 +44,49 @@ function ambiguousCase(){
     // let (acDisplay.value) = 
     //     angleA < 90
     //         ? (a2 < h)
-    //             ? possibleTriangles[0]
+    //             ? "No Triangle"
     //             : (a2 = h)
-    //                 ? possibleTriangles[1]
+    //                 ? "Right Triangle"
     //                 : (a2 > b2)
-    //                     ? possibleTriangles[2]
-    //                     : possibleTriangles[3]
+    //                     ? "One Triangle"
+    //                     : "Two Triangles"
     //         : (a2 > b2)
-    //             ? possibleTriangles[2]
-    //             : possibleTriangles[0]
+    //             ? "One Triangle"
+    //             : "No Triangle"
 
 
     if (angleA < 90){
-        if (a < h){
+        if (a2 < h){
             let triangle = "No Triangle"
-            console.log(possibleTriangles[0])
-        } else if (a = h){
+            console.log("No Triangle")
+            acDisplay.value = triangle
+        } else if (a2 = h){
             let triangle = "Right Triangle"
-            console.log(possibleTriangles[1])
-        } else if (a > b){
+            console.log("Right Triangle")
+            acDisplay.value = triangle
+        } else if (a2 > b2){
             let triangle = "One Triangle"
-            console.log(possibleTriangles[2])
+            console.log("One Triangle")
+            acDisplay.value = triangle
         } else {
             let triangle = "Two Triangles"
-            console.log(possibleTriangles[3])
+            console.log("Two Triangles")
+            acDisplay.value = triangle
         }
     } else {
-        if ((a < b) || (a = h)){
+        if ((a2 < b2) || (a = h)){
             let triangle = "No Triangles"
-            console.log(possibleTriangles[0])
-        } else if (a > b){
+            console.log("No Triangle")
+            acDisplay.value = triangle
+        } else if (a2 > b2){
             let triangle = "One Triangle"
-            console.log(possibleTriangles[2])
+            console.log("One Triangle")
+            acDisplay.value = triangle
         }
     }
-    //console.log(triangle)
 }
 
 acCalc.addEventListener("click", () => {
+    clearFields(true, false)
     ambiguousCase();
 });
