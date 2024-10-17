@@ -1,3 +1,14 @@
+function clearFields(hfFields, acFields){
+    if (hfFields){
+        document.getElementById("hfA").value = " "
+        document.getElementById("hfB").value = " "
+        document.getElementById("hfC").value = " "
+    }
+    if (acFields){
+        document.getElementById("acA").value = " "
+    }
+}
+
 const heronCalc = document.getElementById("hfSubmit")
 const hfDisplay = document.getElementById("hfAnswerBlock")
 
@@ -5,7 +16,7 @@ function heronsFormula(){
     let a1 = Number(document.getElementById("hfA").value)
     let b1 = Number(document.getElementById("hfB").value)
     let c1 = Number(document.getElementById("hfC").value)
-    let hfAnswer = 0.25 * Math.sqrt((4  *a**2 * b**2)-(a**2 + b**2 - c**2)**2)
+    let hfAnswer = 0.25 * Math.sqrt((4 * a1**2 * b1**2)-(a1**2 + b1**2 - c1**2)**2)
     hfDisplay.value = hfAnswer
     console.log(hfAnswer)
 }
