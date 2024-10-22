@@ -29,7 +29,7 @@ heronCalc.addEventListener("click", () => {
     heronsFormula();
 });
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------broken rn---------------------------------------------------------------------------
 const acDisplay = document.getElementById("acAnswerBlock")
 const acCalc = document.getElementById("acSubmit")
 const possibleTriangles = ["No Triangle", "Right Triangle", "One Triangle", "Two Triangles"]
@@ -38,43 +38,32 @@ function ambiguousCase(){
     let a2 = Number(document.getElementById("acA").value)
     let b2 = Number(document.getElementById("acB").value)
     let angleA = Number(document.getElementById("acAA").value)
-    let h = b2*Math.sin(a2)
-    console.log(`${a2}, ${b2}, ${angleA}, ${h}`)
-
-    // let (acDisplay.value) = 
-    //     angleA < 90
-    //         ? (a2 < h)
-    //             ? "No Triangle"
-    //             : (a2 = h)
-    //                 ? "Right Triangle"
-    //                 : (a2 > b2)
-    //                     ? "One Triangle"
-    //                     : "Two Triangles"
-    //         : (a2 > b2)
-    //             ? "One Triangle"
-    //             : "No Triangle"
-
+    let h = b2*Math.sin(angleA)
+    console.log(`${h} = ${b2}*Math.sin(${angleA})`)
+    console.log(`a:${a2}, b:${b2}, A:${angleA}, h:${h}`)
 
     if (angleA < 90){
-        if (a2 < h){
-            let triangle = "No Triangle"
-            console.log("No Triangle")
+        console.log("angleA < 90")
+        if (h < a2 < b2) {
+            let triangle = "Two Triangles"
+            console.log(`Two Triangles. ${h} < ${a2} < ${b2}`)
             acDisplay.value = triangle
-        } else if (a2 = h){
+        } else if (a2 === h){
             let triangle = "Right Triangle"
-            console.log("Right Triangle")
+            console.log(`Right Triangle. ${h} === ${a2}`)
             acDisplay.value = triangle
         } else if (a2 > b2){
             let triangle = "One Triangle"
-            console.log("One Triangle")
+            console.log(`One Triangle. ${a2} > ${b2}`)
             acDisplay.value = triangle
         } else {
-            let triangle = "Two Triangles"
-            console.log("Two Triangles")
+            let triangle = "No Triangle"
+            console.log(`No Triangles. ${h} < ${a2}`)
             acDisplay.value = triangle
-        }
+        } 
     } else {
-        if ((a2 < b2) || (a = h)){
+        console.log("angleA !< 90")
+        if ((a2 < b2) || (a === h)){
             let triangle = "No Triangles"
             console.log("No Triangle")
             acDisplay.value = triangle
@@ -90,3 +79,4 @@ acCalc.addEventListener("click", () => {
     clearFields(true, false)
     ambiguousCase();
 });
+/*----------------------------------------------------------------------*/
