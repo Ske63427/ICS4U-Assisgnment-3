@@ -1,14 +1,14 @@
 function clearFields(hfFields, acFields){
     if (hfFields){
-        document.getElementById("hfA").value = " "
-        document.getElementById("hfB").value = " "
-        document.getElementById("hfC").value = " "
-        document.getElementById("hfAnswerBlock").value = " "
+        document.getElementById("hfA").value = ""
+        document.getElementById("hfB").value = ""
+        document.getElementById("hfC").value = ""
+        document.getElementById("hfAnswerBlock").value = ""
     }
     if (acFields){
-        document.getElementById("acA").value = " "
-        document.getElementById("acB").value = " "
-        document.getElementById("acAA").value = " "
+        document.getElementById("acA").value = ""
+        document.getElementById("acB").value = ""
+        document.getElementById("acAA").value = ""
     }
 }
 
@@ -37,8 +37,8 @@ const possibleTriangles = ["No Triangle", "Right Triangle", "One Triangle", "Two
 function ambiguousCase(){
     let a2 = Number(document.getElementById("acA").value)
     let b2 = Number(document.getElementById("acB").value)
-    let angleA = Number(document.getElementById("acAA").value)
-    let h = b2*Math.sin(angleA)
+    let angleA = Number(document.getElementById("acAngleA").value)
+    let h = Math.abs(b2*Math.sin(angleA))
     console.log(`${h} = ${b2}*Math.sin(${angleA})`)
     console.log(`a:${a2}, b:${b2}, A:${angleA}, h:${h}`)
 
@@ -48,7 +48,7 @@ function ambiguousCase(){
             let triangle = "Two Triangles"
             console.log(`Two Triangles. ${h} < ${a2} < ${b2}`)
             acDisplay.value = triangle
-        } else if (a2 === h){
+        } else if (a2 == h){
             let triangle = "Right Triangle"
             console.log(`Right Triangle. ${h} === ${a2}`)
             acDisplay.value = triangle
