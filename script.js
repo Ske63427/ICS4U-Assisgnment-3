@@ -25,25 +25,28 @@ function heronsFormula(a, b, c){
 }
 
 heronCalc.addEventListener("click", () => {
-    // clearFields(false, true);
+    clearFields(false, true);
     heronsFormula(document.getElementById("hfA").value, document.getElementById("hfB").value, document.getElementById("hfC").value);
 });
 
-//-----------------------------------broken rn---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
 const acDisplay = document.getElementById("acAnswerBlock")
 const acCalc = document.getElementById("acSubmit")
-const possibleTriangles = ["No Triangle", "Right Triangle", "One Triangle", "Two Triangles"]
+
+function toRadians (angle) { //forgetting that i had to convert to radians has caused me days of pain
+    return angle * (Math.PI/180);
+}
 
 function ambiguousCase(){
     let a2 = document.getElementById("acA").value
     let b2 = document.getElementById("acB").value
-    let angleA = document.getElementById("acAngleA").value
-    let h = b2*Math.sin(angleA)
-    console.log(`${h} = ${b2}*Math.sin(${angleA})`)
-    console.log(`a:${a2}, b:${b2}, A:${angleA}, h:${h}`)
+    let A = toRadians(document.getElementById("acAngleA").value)
+    let h = Math.round(b2*Math.sin(A))
 
-    if (angleA < 90){
-        console.log("angleA < 90")
+    console.log(`${h} = ${b2}*Math.sin(${A})`)
+    console.log(`a:${a2}, b:${b2}, A:${A}, h:${h}`)
+    if (A < 90){
+        console.log("A < 90")
         if ((a2 > h) && (a2 < b2)) {
             let triangle = "Two Triangles"
             console.log(`Two Triangles. ${h} < ${a2} < ${b2}`)
@@ -62,8 +65,8 @@ function ambiguousCase(){
             acDisplay.value = triangle
         }
     } else {
-        console.log("angleA !< 90")
-        if ((a2 < b2) || (a === h)){
+        console.log("A !< 90")
+        if ((a2 < b2) || (a2 == h)){
             let triangle = "No Triangles"
             console.log("No Triangle")
             acDisplay.value = triangle
