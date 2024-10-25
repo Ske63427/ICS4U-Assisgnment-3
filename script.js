@@ -85,10 +85,34 @@ acCalc.addEventListener("click", () => {
 /*Newtons Method */
 /*----------------------------------------------------------------------*/
 /*Polynomial Formula */
+const pCalc = document.getElementById("pfSubmit")
+const pFunc = document.getElementById("pfFunction")
 
-
-function polynomial(){
-    let coefficients = document.getElementById("pfC").value
-    let Exponents = document.getElementById("pfE").value
-    let A = document.getElementById("pfX").value
+function polynomial(arr1, arr2){
+    a = arr1[0]
+    b = arr1[1]
+    c = arr1[2]
+    exp1 = arr2[0] < 1
+    exp2 = arr2[1]
+    exp3 = arr2[2]
+    pFunc.value = `${a}x^{${exp1}}+${b}x^{${exp2}}+${c}`
+    // katex.render(`${a}x^{${exp1}}+${b}x^{${exp2}}+${c}`, pFunc.value, {
+    //     throwOnError: false
+    // })
+    
 }
+
+pCalc.addEventListener("click", () => {
+    // clearFields(true, false)
+    let coefficientString = document.getElementById("pfC").value
+    const coefficientArray = coefficientString.split(" ")
+
+    let exponentString = document.getElementById("pfE").value
+    const exponentArray = exponentString.split(" ")
+
+    let A = document.getElementById("pfX").value
+
+    console.log(coefficientArray)
+    console.log(exponentArray)
+    polynomial(coefficientArray, exponentArray);
+});

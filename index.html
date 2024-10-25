@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
     <title>Assignment 3</title>
   </head>
   <body>
     <div class="parent">
       <div class="heronsFormula">
         <h3>Heron's Formula</h3>
-        <label>a:</label><br />
+        <label>a:</label><br>
         <input id="hfA" type="number" placeholder="0"><br><br>
-        <label>b:</label><br />
+
+        <label>b:</label><br>
         <input id="hfB" type="number" placeholder="0"><br><br>
-        <label>c:</label><br />
+
+        <label>c:</label><br>
         <input id="hfC" type="number" placeholder="0"><br><br>
-        <input id="hfAnswerBlock" placeholder=" " type="text" disabled/><br><br>
+
+        <input id="hfAnswerBlock" placeholder=" " type="text" disabled><br><br>
         <button id="hfSubmit">Calculate</button>
       </div>
-      <br />
+      <br>
       <div class="ambiguousCase">
         <h3>Ambiguous Case</h3>
         <label>a:</label><br>
         <input id="acA" type="number" placeholder="0"><br><br>
+
         <label>b:</label><br>
         <input id="acB" type="number" placeholder="0"><br><br>
+
         <label>Angle A:</label><br>
         <input id="acAngleA" type="number" placeholder="0"><br><br>
+
         <input id="acAnswerBlock" placeholder=" " type="text" disabled><br><br>
         <button id="acSubmit">Calculate</button>
       </div>
-      <br />
+      <br>
       <div class="newtonsMethod">
         <h3>Newtons Method</h3>
-        <label>Root Guess:</label><br />
-        <input id="nmG" type="number" /><br><br>
-        <input id="nmAnswerBlock" placeholder=" " type="text" disabled/><br><br>
+        <label>Root Guess:</label><br>
+        <input id="nmG" type="number"><br><br>
+        <input id="nmAnswerBlock" placeholder=" " type="text" disabled><br><br>
         <button id="nmSubmit">Calculate</button>
       </div>
       <div class="polynomialFormula">
         <h3>Polynomial Formula</h3>
-            <label>Coefficients:</label><br>
-            <input id="pfC" type="number" placeholder="a b c"><br><br>
+        <label>Coefficients:</label><br>
+        <input id="pfC" type="text" placeholder="a b c"><br><br>
 
-            <label>Exponents:</label><br>
-            <input id="pfE" type="number" placeholder="2 1 0"><br><br>
+        <label>Exponents:</label><br>
+        <input id="pfE" type="text" placeholder="2 1 0"><br><br>
 
-            <label>x Values:</label><br>
-            <input id="pfX" type="number" placeholder="0"><br><br>
+        <label>x Values:</label><br>
+        <input id="pfX" type="text" placeholder="0"><br><br>
 
-            <label>Polynomial Function(result):</label><br>
-            <input id="pfFunction" placeholder=" " type="text" disabled><br><br>
+        <label>Polynomial Function(result):</label><br>
+        <input id="pfFunction" placeholder=" " type="text" disabled><br><br>
 
-            <label>Polynomial Evaluation</label><br>
-            <input id="pfEval" type="number" disabled><br><br>
-            
-            <button id="pfSubmit">Calculate</button>
+        <label>Polynomial Evaluation</label><br>
+        <input id="pfEval" type="number" disabled><br><br>
+        
+        <button id="pfSubmit">Calculate</button>
       </div>
     </div>
     <script src="script.js"></script>
