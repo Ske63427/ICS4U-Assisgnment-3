@@ -1,14 +1,22 @@
-function clearFields(hfFields, acFields){
+function clearFields(hfFields, acFields, pfFields){ //function doesnt work :(
     if (hfFields){
-        document.getElementById("hfA").value = " ";
-        document.getElementById("hfB").value = " ";
-        document.getElementById("hfC").value = " ";
-        document.getElementById("hfAnswerBlock").value = " ";
+        document.getElementById("hfA").value = document.getElementById("hfA").placeholder;
+        document.getElementById("hfB").value = document.getElementById("hfB").placeholder;
+        document.getElementById("hfC").value = document.getElementById("hfC").placeholder;
+        document.getElementById("hfAnswerBlock").value = document.getElementById("hfAnswerBlock").placeholder;
     }
     if (acFields){
-        document.getElementById("acA").value = " ";
-        document.getElementById("acB").value = " ";
-        document.getElementById("acAA").value = " ";
+        document.getElementById("acA").value = document.getElementById("acA").placeholder;
+        document.getElementById("acB").value = document.getElementById("acB").placeholder;
+        document.getElementById("acAA").value = document.getElementById("acAA").placeholder;
+        document.getElementById("acAnswerBlock").value = document.getElementById("acAnswerBlock").placeholder
+    }
+    if (pfFields){
+        document.getElementById("pfC").value = document.getElementById("pfC").placeholder
+        document.getElementById("pfE").value = document.getElementById("pfE").placeholder
+        document.getElementById("pfX").value = document.getElementById("pfX").placeholder
+        document.getElementById("pfFunction").value = document.getElementById("pfFunction").placeholder
+        document.getElementById("pfEval").value = document.getElementById("pfEval").placeholder
     }
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -22,7 +30,7 @@ function heronsFormula(a, b, c){
 }
 
 heronCalc.addEventListener("click", () => {
-    // clearFields(false, true);
+    // clearFields(false, true, true);
     let a1 = Number(document.getElementById("hfA").value)
     let b1 = Number(document.getElementById("hfB").value)
     let c1 = Number(document.getElementById("hfC").value)
@@ -74,7 +82,7 @@ function ambiguousCase(a, b, A, h){
 }
 
 acCalc.addEventListener("click", () => {
-    // clearFields(true, false)
+    // clearFields(true, false, true)
     let a2 = document.getElementById("acA").value
     let b2 = document.getElementById("acB").value
     let A = toRadians(document.getElementById("acAngleA").value)
@@ -82,37 +90,44 @@ acCalc.addEventListener("click", () => {
     ambiguousCase(a2, b2, A, h);
 });
 /*----------------------------------------------------------------------*/
-/*Newtons Method */
+const nmFunction = document.getElementById("nmF")
+const root = document.getElementById("nmAnswerBlock")
+let x0 = document.getElementById("nmG")
+// let x1 = x0 - (f(0) / f'prime'(0))
+
+while (Math.abs(x1-x0) > 0.001){
+    
+}
+
+
 /*----------------------------------------------------------------------*/
-/*Polynomial Formula */
 const pCalc = document.getElementById("pfSubmit")
 const pFunc = document.getElementById("pfFunction")
+const pfEval = document.getElementById("pfEval")
 
-function polynomial(arr1, arr2){
+function polynomial(arr1, arr2, x){
     a = arr1[0]
     b = arr1[1]
     c = arr1[2]
-    exp1 = arr2[0] < 1
+    exp1 = arr2[0]
     exp2 = arr2[1]
     exp3 = arr2[2]
-    pFunc.value = `${a}x^{${exp1}}+${b}x^{${exp2}}+${c}`
-    // katex.render(`${a}x^{${exp1}}+${b}x^{${exp2}}+${c}`, pFunc.value, {
-    //     throwOnError: false
-    // })
+    evaluation = (a*(x**exp1))+(b*(x**exp2))+c
+    console.log(evaluation)
+    pfEval.value = evaluation
+    pFunc.value = `${a}x^${exp1}+${b}x^${exp2}+${c}`
     
 }
 
 pCalc.addEventListener("click", () => {
-    // clearFields(true, false)
     let coefficientString = document.getElementById("pfC").value
     const coefficientArray = coefficientString.split(" ")
 
     let exponentString = document.getElementById("pfE").value
     const exponentArray = exponentString.split(" ")
 
-    let A = document.getElementById("pfX").value
+    let x = document.getElementById("pfX").value
 
-    console.log(coefficientArray)
-    console.log(exponentArray)
-    polynomial(coefficientArray, exponentArray);
+    // clearFields(true, true, false)
+    polynomial(coefficientArray, exponentArray, x);
 });
