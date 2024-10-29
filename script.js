@@ -1,22 +1,22 @@
 function clearFields(hfFields, acFields, pfFields){ //function doesnt work :(
     if (hfFields){
-        document.getElementById("hfA").value = document.getElementById("hfA").placeholder;
-        document.getElementById("hfB").value = document.getElementById("hfB").placeholder;
-        document.getElementById("hfC").value = document.getElementById("hfC").placeholder;
-        document.getElementById("hfAnswerBlock").value = document.getElementById("hfAnswerBlock").placeholder;
+        document.getElementById("hfA").value = "0"
+        document.getElementById("hfB").value = "0"
+        document.getElementById("hfC").value = "0"
+        document.getElementById("hfAnswerBlock").value = "0"
     }
     if (acFields){
-        document.getElementById("acA").value = document.getElementById("acA").placeholder;
-        document.getElementById("acB").value = document.getElementById("acB").placeholder;
-        document.getElementById("acAA").value = document.getElementById("acAA").placeholder;
-        document.getElementById("acAnswerBlock").value = document.getElementById("acAnswerBlock").placeholder
+        document.getElementById("acA").value = "0"
+        document.getElementById("acB").value = "0"
+        document.getElementById("acAngleA").value = "0"
+        document.getElementById("acAnswerBlock").value = "0"
     }
     if (pfFields){
-        document.getElementById("pfC").value = document.getElementById("pfC").placeholder
-        document.getElementById("pfE").value = document.getElementById("pfE").placeholder
-        document.getElementById("pfX").value = document.getElementById("pfX").placeholder
-        document.getElementById("pfFunction").value = document.getElementById("pfFunction").placeholder
-        document.getElementById("pfEval").value = document.getElementById("pfEval").placeholder
+        document.getElementById("pfC").value = "0"
+        document.getElementById("pfE").value = "0"
+        document.getElementById("pfX").value = "0"
+        document.getElementById("pfFunction").value = "0"
+        document.getElementById("pfEval").value = "0"
     }
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ function heronsFormula(a, b, c){
 }
 
 heronCalc.addEventListener("click", () => {
-    // clearFields(false, true, true);
+    clearFields(false, true, true);
     let a1 = Number(document.getElementById("hfA").value)
     let b1 = Number(document.getElementById("hfB").value)
     let c1 = Number(document.getElementById("hfC").value)
@@ -82,7 +82,7 @@ function ambiguousCase(a, b, A, h){
 }
 
 acCalc.addEventListener("click", () => {
-    // clearFields(true, false, true)
+    clearFields(true, false, true)
     let a2 = document.getElementById("acA").value
     let b2 = document.getElementById("acB").value
     let A = toRadians(document.getElementById("acAngleA").value)
@@ -95,10 +95,9 @@ const root = document.getElementById("nmAnswerBlock")
 let x0 = document.getElementById("nmG")
 // let x1 = x0 - (f(0) / f'prime'(0))
 
-while (Math.abs(x1-x0) > 0.001){
+// while (Math.abs(x1-x0) > 0.001){
     
-}
-
+// }
 
 /*----------------------------------------------------------------------*/
 const pCalc = document.getElementById("pfSubmit")
@@ -115,11 +114,21 @@ function polynomial(arr1, arr2, x){
     evaluation = (a*(x**exp1))+(b*(x**exp2))+c
     console.log(evaluation)
     pfEval.value = evaluation
-    pFunc.value = `${a}x^${exp1}+${b}x^${exp2}+${c}`
-    
+
+    if (arr1[0] == 1){
+        pFunc.value = `x^${exp1}+${b}x^${exp2}+${c}`
+        console.log("a == 1")
+    } else if (arr1[1] == 1){
+        pFunc.value = `${a}x^${exp1}+x^${exp2}+${c}`
+        console.log("b == 1")
+    } else if (arr1[2] == 0){
+        pFunc.value = `${a}x^${exp1}+${b}x^${exp2}`
+        console.log("c == 0")
+    }
 }
 
 pCalc.addEventListener("click", () => {
+    console.log("Clicked")
     let coefficientString = document.getElementById("pfC").value
     const coefficientArray = coefficientString.split(" ")
 
@@ -128,6 +137,6 @@ pCalc.addEventListener("click", () => {
 
     let x = document.getElementById("pfX").value
 
-    // clearFields(true, true, false)
+    clearFields(true, true, false)
     polynomial(coefficientArray, exponentArray, x);
 });
