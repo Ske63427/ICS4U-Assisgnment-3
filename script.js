@@ -31,12 +31,12 @@ function heronsFormula(a, b, c) {
 }
 
 heronCalc.addEventListener("click", () => {
-//   clearFields(false, true, true)
-  let a1 = Number(document.getElementById("hfA").value)
-  let b1 = Number(document.getElementById("hfB").value)
-  let c1 = Number(document.getElementById("hfC").value)
-  heronsFormula(a1, b1, c1)
-})
+    // clearFields(false, true, true);
+    let a1 = Number(document.getElementById("hfA").value)
+    let b1 = Number(document.getElementById("hfB").value)
+    let c1 = Number(document.getElementById("hfC").value)
+    heronsFormula(a1, b1, c1);
+});
 
 //-----------------------------------------------------------------------------------------------------------------
 const acDisplay = document.getElementById("acAnswerBlock")
@@ -85,70 +85,52 @@ function ambiguousCase(a, b, A, h) {
 }
 
 acCalc.addEventListener("click", () => {
-//   clearFields(true, false, true)
-  let a2 = document.getElementById("acA").value
-  let b2 = document.getElementById("acB").value
-  let A = toRadians(document.getElementById("acAngleA").value)
-  let h = Math.round(b2 * Math.sin(A))
-  ambiguousCase(a2, b2, A, h)
-})
-
-/* Common Functions for Newtons Method and Polynomial Function Start */
-
-
-function getPolynomialValues() {
-  let coefficientString = document.getElementById("pfC").value
-  const coefficientArray = coefficientString.split(" ")
-
-  let exponentString = document.getElementById("pfE").value
-  const exponentArray = exponentString.split(" ")
-
-  return [coefficientArray, exponentArray]
-}
-/* Common Functions for Newtons Method and Polynomial Function End*/
-
-const calculate = document.getElementById("nmSubmit")
+    // clearFields(true, false, true)
+    let a2 = document.getElementById("acA").value
+    let b2 = document.getElementById("acB").value
+    let A = toRadians(document.getElementById("acAngleA").value)
+    let h = Math.round(b2*Math.sin(A))
+    ambiguousCase(a2, b2, A, h);
+});
+/*----------------------------------------------------------------------*/
+const nmFunction = document.getElementById("nmF")
+const root = document.getElementById("nmAnswerBlock")
 let x0 = document.getElementById("nmG")
+// let x1 = x0 - (f(0) / f'prime'(0))
 
-function newtonsMethod() {}
+while (Math.abs(x1-x0) > 0.001){
+    
+}
 
-calculate.addEventListener("click", () => {
-  nmpv = getPolynomialValues() //Newtons Method Polynomial Values
-  //                           a                x  ^        n        +             b                x  ^       n-1       +             c                x ^        n-2
-  derivativeEval = (nmpv[0][0] * nmpv[1][0]) * (x ** nmpv[1][0] - 1) + (nmpv[0][1] * nmpv[1][1]) * (x ** nmpv[1][1] - 1) + (nmpv[0][2] * nmpv[1][2]) * (x ** nmpv[1][2] - 1)
-})
 
 /*----------------------------------------------------------------------*/
 const pCalc = document.getElementById("pfSubmit")
 const pFunc = document.getElementById("pfFunction")
 const pfEval = document.getElementById("pfEval")
 
-function polynomial(arr1, arr2, x) {
-  evaluation = arr1[0] * x ** arr2[0] + arr1[1] * x ** arr2[1] + arr1[2] * x ** arr2[2]
-  //console.log(evaluation)
-  pfEval.value = evaluation
-
-  if (arr1[0] == 1) {
-    pFunc.value = `x^{${arr2[0]}}+${arr1[1]}x^{${arr2[1]}}+${arr1[2]}x^{${arr2[2]}}`
-    //console.log("a == 1")
-  } else if (arr1[1] == 1) {
-    pFunc.value = `${arr1[0]}x^{${arr2[0]}}+x^{${arr2[1]}}+${arr1[2]}x^{${arr2[2]}}`
-    //console.log("b == 1")
-  } else if (arr1[2] == 0) {
-    pFunc.value = `${arr1[0]}x^${arr2[0]}+${arr1[1]}x^${arr2[1]}`
-    //console.log("c == 0")
-  } else {
-    pFunc.value = `${arr1[0]}x^{${arr2[0]}}+${arr1[1]}x^{${arr2[1]}}+${arr1[2]}x^{${arr2[2]}}`
-  }
+function polynomial(arr1, arr2, x){
+    a = arr1[0]
+    b = arr1[1]
+    c = arr1[2]
+    exp1 = arr2[0]
+    exp2 = arr2[1]
+    exp3 = arr2[2]
+    evaluation = (a*(x**exp1))+(b*(x**exp2))+c
+    console.log(evaluation)
+    pfEval.value = evaluation
+    pFunc.value = `${a}x^${exp1}+${b}x^${exp2}+${c}`
+    
 }
 
 pCalc.addEventListener("click", () => {
-  // //console.log("Clicked")
-  polynomialValues = getPolynomialValues()
-  const coefficientArray = [polynomialValues[0][0], polynomialValues[0][1], polynomialValues[0][2]]
-  const exponentArray = [polynomialValues[1][0], polynomialValues[1][1], polynomialValues[1][2]]
-  let x = document.getElementById("pfX").value
+    let coefficientString = document.getElementById("pfC").value
+    const coefficientArray = coefficientString.split(" ")
 
-//   clearFields(true, true, false)
-  polynomial(coefficientArray, exponentArray, x)
-})
+    let exponentString = document.getElementById("pfE").value
+    const exponentArray = exponentString.split(" ")
+
+    let x = document.getElementById("pfX").value
+
+    // clearFields(true, true, false)
+    polynomial(coefficientArray, exponentArray, x);
+});
