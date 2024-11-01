@@ -3,7 +3,7 @@ const hfDisplay = document.getElementById("hfAnswerBlock")
 
 function heronsFormula(a, b, c) {
   let hfAnswer =
-    0.25 * Math.sqrt(4 * a ** 2 * b ** 2 - (a ** 2 + b ** 2 - c ** 2) ** 2)
+    0.25 * Math.sqrt(4 * a ** 2 * b ** 2 - (a ** 2 + b ** 2 - c ** 2) ** 2);
   hfDisplay.value = hfAnswer.toFixed(3)
 }
 
