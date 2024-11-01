@@ -43,6 +43,80 @@ acCalc.addEventListener("click", () => {
   ambiguousCase(a2, b2, A, h)
 })
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const nmSubmit = document.getElementById("nmSubmit")
 const rootApprox = document.getElementById("nmAnswerBlock")
 
@@ -52,12 +126,19 @@ nmSubmit.addEventListener("click", () => {
 })
 
 function newtonsMethod(values, x0) {
+  let x1
   evaluation = evaluatePolynomial(values, x0)
-  derivativeEval =
-    values[1][0] * values[0][0] * x0 ** --values[1][0] +
-    values[1][1] * values[0][1] * x0 ** --values[1][1] +
-    values[1][2] * values[0][2] * x0 ** --values[1][2];
-  rootApprox.value = x0 - evaluation / derivativeEval
+  derivativeEval = 0
+  for (i = 0; i < values[0].length; i++) derivativeEval += values[1][i] * values[0][i] ** --values[1][i];
+  x1 = x0 - evaluation / derivativeEval
+  while (Math.abs(x0-x1) > 0.001){
+    evaluation = evaluatePolynomial(values, x0)
+    derivativeEval = 0
+    for (i = 0; i < values[0].length; i++) derivativeEval += values[1][i] * values[0][i] ** --values[1][i];
+    x1 = x0 - evaluation / derivativeEval
+  }
+  rootApprox.value = x1
+  
 }
 /*---------------------------------------------------------Polynomial Methods for Newtons Method and Polynomial Function-------------------------------------------------------------*/
 function getPolynomialValues() {
@@ -67,15 +148,26 @@ function getPolynomialValues() {
 }
 
 function evaluatePolynomial(values, x) {
-  return values[0][0] * x ** values[1][0] + 
-         values[0][1] * x ** values[1][1] + 
-         values[0][2] * x ** values[1][2];
+  let polyEval = 0
+  // console.log(values[0].length)
+  // console.log(`x: ${x}`)
+  for (i = 0; i < values[0].length; i++){
+    polyEval += values[0][i] * x ** values[1][i]
+    // console.log(`${i}: ${values[0][i]} * x ** ${values[1][i]} = ${polyEval}`)
+  }
+  // console.log(polyEval)
+  return polyEval
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 function polynomial(values, x) {
+  let xyz = ``
+  for (i = 0; i < values[1].length; i++){
+    xyz += `(${values[0][i]})x^{${values[1][i]}}`
+    if (values[1][i] != 0) xyz += ` + `
+  }
   document.getElementById("pfEval").value = evaluatePolynomial(values, x)
-  document.getElementById("pfFunction").value = `${values[0][0]}x^{${values[1][0]}} + ${values[0][1]}x^{${values[1][1]}} + ${values[0][2]}x^{${values[1][2]}}`
+  document.getElementById("pfFunction").value = xyz
 }
 
 document.getElementById("pfSubmit").addEventListener("click", () => {
