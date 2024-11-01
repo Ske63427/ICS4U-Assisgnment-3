@@ -47,8 +47,8 @@ const nmSubmit = document.getElementById("nmSubmit")
 const rootApprox = document.getElementById("nmAnswerBlock")
 
 nmSubmit.addEventListener("click", () => {
-  let x0 = document.getElementById("nmG").value //i forgot to add ".value" and spent a little under an hour beating my head against my desk
-  rootApprox = Math.round(newtonsMethod(getPolynomialValues(), x0))
+  rootApprox = Math.round(newtonsMethod(getPolynomialValues(), document.getElementById("nmG").value))
+  //i forgot to add ".value" and spent a little under an hour beating my head against my desk
 })
 
 function newtonsMethod(values, x0) {
